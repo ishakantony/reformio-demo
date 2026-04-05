@@ -14,7 +14,7 @@ export default function SignIn() {
     setError("");
     const result = login(email, password);
     if (result.ok) {
-      navigate("/dashboard");
+      navigate(result.user.role === "admin" ? "/manage/dashboard" : "/dashboard");
     } else {
       setError(result.error);
     }

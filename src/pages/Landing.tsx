@@ -93,7 +93,7 @@ function Navbar() {
         <div className="flex items-center gap-4">
           {authed ? (
             <Link
-              to="/dashboard"
+              to="/manage/dashboard"
               className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-charcoal shadow-sm hover:bg-rose-dark hover:shadow-md transition-all duration-300"
             >
               Dashboard
