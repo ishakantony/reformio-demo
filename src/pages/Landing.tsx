@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Reveal } from "../components/Reveal";
+import { isAuthenticated } from "../auth";
 
 /* ------------------------------------------------------------------ */
 /*  Icons                                                              */
@@ -76,6 +77,8 @@ function BellIcon() {
 /* ------------------------------------------------------------------ */
 
 function Navbar() {
+  const authed = isAuthenticated();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/80 backdrop-blur-lg border-b border-divider/50">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 lg:px-10">
@@ -88,18 +91,29 @@ function Navbar() {
           <a href="#about" className="hover:text-charcoal transition-colors duration-300">About</a>
         </div>
         <div className="flex items-center gap-4">
-          <Link
-            to="/login"
-            className="hidden sm:inline-block text-sm font-medium text-warm-brown hover:text-warm-brown-dark transition-colors duration-300"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/login"
-            className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-charcoal shadow-sm hover:bg-rose-dark hover:shadow-md transition-all duration-300"
-          >
-            Book a Class
-          </Link>
+          {authed ? (
+            <Link
+              to="/dashboard"
+              className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-charcoal shadow-sm hover:bg-rose-dark hover:shadow-md transition-all duration-300"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="hidden sm:inline-block text-sm font-medium text-warm-brown hover:text-warm-brown-dark transition-colors duration-300"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-charcoal shadow-sm hover:bg-rose-dark hover:shadow-md transition-all duration-300"
+              >
+                Book a Class
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

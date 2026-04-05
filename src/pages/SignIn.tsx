@@ -1,14 +1,23 @@
 import { type FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    // TODO: wire up authentication
+    setError("");
+    const result = login(email, password);
+    if (result.ok) {
+      navigate("/dashboard");
+    } else {
+      setError(result.error);
+    }
   }
 
   return (
@@ -90,6 +99,13 @@ export default function SignIn() {
                   className="w-full rounded-lg border border-divider bg-white px-4 py-3 text-sm text-charcoal placeholder:text-muted/40 outline-none focus:border-warm-brown focus:ring-1 focus:ring-warm-brown/30 transition-all duration-200"
                 />
               </div>
+
+              {/* Error */}
+              {error && (
+                <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5">
+                  {error}
+                </p>
+              )}
 
               {/* Submit */}
               <button
