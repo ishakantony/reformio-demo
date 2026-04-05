@@ -1,1 +1,102 @@
 @import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F3EDE4;
+  --color-warm-brown: #8B6F4E;
+  --color-warm-brown-light: #A68B6B;
+  --color-warm-brown-dark: #6B5438;
+  --color-rose: #D4A59A;
+  --color-rose-light: #E4C4BB;
+  --color-rose-dark: #C08B7E;
+  --color-charcoal: #1A1A1A;
+  --color-muted: #6B6560;
+  --color-divider: #E5DDD3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #1A1A1A;
+  background-color: #FAF7F2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll-triggered reveal animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-scale {
+  opacity: 0;
+}
+
+.reveal-scale.visible {
+  animation: scaleIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Stagger children */
+.stagger-children.visible > * {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stagger-children.visible > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children.visible > *:nth-child(2) { animation-delay: 120ms; }
+.stagger-children.visible > *:nth-child(3) { animation-delay: 240ms; }
+.stagger-children.visible > *:nth-child(4) { animation-delay: 360ms; }
+
+/* Grain overlay texture */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: #D4A59A;
+  color: #1A1A1A;
+}
