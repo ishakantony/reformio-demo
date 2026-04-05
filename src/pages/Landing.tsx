@@ -1,76 +1,7 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Clock, Users, Flame, CalendarCheck, Smartphone, Bell, Check } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import { isAuthenticated } from "../auth";
-
-/* ------------------------------------------------------------------ */
-/*  Icons                                                              */
-/* ------------------------------------------------------------------ */
-function ArrowRightIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
-
-function UsersIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
-function FlameIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-    </svg>
-  );
-}
-
-function CalendarCheckIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2" />
-      <line x1="16" y1="2" x2="16" y2="6" />
-      <line x1="8" y1="2" x2="8" y2="6" />
-      <line x1="3" y1="10" x2="21" y2="10" />
-      <path d="M9 16l2 2 4-4" />
-    </svg>
-  );
-}
-
-function SmartphoneIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="2" width="14" height="20" rx="2" />
-      <line x1="12" y1="18" x2="12.01" y2="18" />
-    </svg>
-  );
-}
-
-function BellIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-    </svg>
-  );
-}
 
 /* ------------------------------------------------------------------ */
 /*  Sections                                                           */
@@ -156,7 +87,7 @@ function Hero() {
                 >
                   Browse Classes
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                    <ArrowRightIcon />
+                    <ArrowRight size={18} />
                   </span>
                 </Link>
                 <a
@@ -200,8 +131,8 @@ function Classes() {
       description:
         "Build strength, flexibility, and control on the Pilates reformer. Guided resistance training that sculpts and lengthens — suitable for every level.",
       details: [
-        { icon: <ClockIcon />, text: "50 min" },
-        { icon: <UsersIcon />, text: "Max 8 per class" },
+        { icon: <Clock size={16} strokeWidth={1.5} />, text: "50 min" },
+        { icon: <Users size={16} strokeWidth={1.5} />, text: "Max 8 per class" },
       ],
       tags: ["All Levels", "Strength", "Flexibility"],
     },
@@ -212,9 +143,9 @@ function Classes() {
       description:
         "Mat Pilates in a heated room. The warmth deepens every stretch and intensifies the burn — a full-body challenge that leaves you feeling renewed.",
       details: [
-        { icon: <ClockIcon />, text: "45 min" },
-        { icon: <FlameIcon />, text: "Heated studio" },
-        { icon: <UsersIcon />, text: "Max 12 per class" },
+        { icon: <Clock size={16} strokeWidth={1.5} />, text: "45 min" },
+        { icon: <Flame size={16} strokeWidth={1.5} />, text: "Heated studio" },
+        { icon: <Users size={16} strokeWidth={1.5} />, text: "Max 12 per class" },
       ],
       tags: ["Intermediate", "Core", "Endurance"],
     },
@@ -294,19 +225,19 @@ function Classes() {
 function Booking() {
   const features = [
     {
-      icon: <CalendarCheckIcon />,
+      icon: <CalendarCheck size={28} strokeWidth={1.5} />,
       title: "Book in Seconds",
       description:
         "Browse the schedule, pick a class, and reserve your spot — no calls, no waiting.",
     },
     {
-      icon: <SmartphoneIcon />,
+      icon: <Smartphone size={28} strokeWidth={1.5} />,
       title: "Manage on Any Device",
       description:
         "View your upcoming bookings, cancel if plans change, and track your attendance history.",
     },
     {
-      icon: <BellIcon />,
+      icon: <Bell size={28} strokeWidth={1.5} />,
       title: "Never Miss a Spot",
       description:
         "See real-time availability so you always know which classes still have room.",
@@ -398,9 +329,7 @@ function Booking() {
               <div className="absolute -bottom-5 -right-4 lg:-right-6 bg-white rounded-xl shadow-xl px-5 py-3 border border-divider/40">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
+                    <Check size={16} strokeWidth={2.5} className="text-green-600" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-charcoal">Booked!</p>
@@ -489,7 +418,7 @@ function CTASection() {
             >
               Book a Class
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRightIcon />
+                <ArrowRight size={18} />
               </span>
             </Link>
             <span className="text-sm text-cream/40">

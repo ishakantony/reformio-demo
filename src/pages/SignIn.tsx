@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../auth";
+import { LotusIcon } from "../components/icons/LotusIcon";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -140,20 +141,7 @@ export default function SignIn() {
           <div className="rounded-2xl bg-cream/85 backdrop-blur-md px-8 py-7 shadow-lg">
             <div className="flex items-start gap-3 mb-3">
               {/* Decorative lotus / pilates icon */}
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-warm-brown shrink-0 mt-0.5"
-              >
-                <path d="M12 2C12 2 8 6 8 10c0 2.21 1.79 4 4 4s4-1.79 4-4c0-4-4-8-4-8z" />
-                <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-              </svg>
+              <LotusIcon size={28} strokeWidth={1} className="text-warm-brown shrink-0 mt-0.5" />
             </div>
             <blockquote className="font-serif text-lg sm:text-xl italic leading-relaxed text-charcoal mb-4">
               "In ten sessions you will feel the difference, in twenty you will
