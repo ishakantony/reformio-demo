@@ -34,7 +34,7 @@ export default function StudentDashboardPage() {
   const attended = studentBookings.filter((b) => b.status === "attended");
 
   return (
-    <div className="max-w-4xl">
+    <>
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-medium text-charcoal mb-1">
           Welcome back, {user.name}
@@ -75,7 +75,7 @@ export default function StudentDashboardPage() {
             Upcoming Classes
           </h2>
           <Link
-            to="/dashboard/bookings"
+            to="/bookings"
             className="text-xs font-medium text-warm-brown hover:text-warm-brown-dark transition-colors"
           >
             View all bookings
@@ -147,6 +147,6 @@ export default function StudentDashboardPage() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

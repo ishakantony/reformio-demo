@@ -13,7 +13,8 @@ const adminNav = [
 
 const studentNav = [
   { to: "/dashboard", label: "My Dashboard", icon: <LayoutGrid size={20} strokeWidth={1.5} />, end: true },
-  { to: "/dashboard/bookings", label: "My Bookings", icon: <FileText size={20} strokeWidth={1.5} />, end: false },
+  { to: "/classes", label: "Classes", icon: <BookOpen size={20} strokeWidth={1.5} />, end: false },
+  { to: "/bookings", label: "My Bookings", icon: <FileText size={20} strokeWidth={1.5} />, end: false },
 ];
 
 export default function DashboardLayout() {

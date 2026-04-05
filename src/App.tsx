@@ -10,6 +10,7 @@ import ClassManagementPage from "./pages/dashboard/ClassManagementPage";
 import StudentListPage from "./pages/dashboard/StudentListPage";
 import SchedulePage from "./pages/dashboard/SchedulePage";
 import BookingHistoryPage from "./pages/dashboard/BookingHistoryPage";
+import StudentClassesPage from "./pages/dashboard/StudentClassesPage";
 
 function GuestOnly({ children }: { children: React.ReactNode }) {
   if (isAuthenticated()) {
@@ -54,7 +55,26 @@ export default function App() {
           }
         >
           <Route index element={<StudentDashboardPage />} />
-          <Route path="bookings" element={<BookingHistoryPage />} />
+        </Route>
+        <Route
+          path="/classes"
+          element={
+            <RequireAuth>
+              <DashboardLayout />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<StudentClassesPage />} />
+        </Route>
+        <Route
+          path="/bookings"
+          element={
+            <RequireAuth>
+              <DashboardLayout />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<BookingHistoryPage />} />
         </Route>
         <Route
           path="/manage"

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getUser } from "../../auth";
 import Badge from "../../components/Badge";
 import SearchInput from "../../components/SearchInput";
 import {
@@ -12,10 +13,16 @@ import {
 } from "../../data/mock";
 
 export default function BookingHistoryPage() {
+  const user = getUser()!;
+  const isAdmin = user.role === "admin";
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
-  const enriched = bookings.map((b) => {
+  const sourceBookings = isAdmin
+    ? bookings
+    : bookings.filter((b) => b.studentId === "s-1");
+
+  const enriched = sourceBookings.map((b) => {
     const sc = scheduledClasses.find((c) => c.id === b.scheduledClassId);
     const student = getStudentById(b.studentId);
     const ct = sc ? getClassTypeById(sc.classTypeId) : undefined;
@@ -26,7 +33,7 @@ export default function BookingHistoryPage() {
   const filtered = enriched.filter((b) => {
     const matchesSearch =
       !search ||
-      b.student?.name.toLowerCase().includes(search.toLowerCase()) ||
+      (isAdmin && b.student?.name.toLowerCase().includes(search.toLowerCase())) ||
       b.ct?.name.toLowerCase().includes(search.toLowerCase());
     const matchesStatus =
       statusFilter === "all" || b.status === statusFilter;
@@ -53,7 +60,7 @@ export default function BookingHistoryPage() {
           <SearchInput
             value={search}
             onChange={setSearch}
-            placeholder="Search by student or class..."
+            placeholder={isAdmin ? "Search by student or class..." : "Search by class..."}
           />
         </div>
         <select
@@ -72,18 +79,18 @@ export default function BookingHistoryPage() {
       <div className="flex gap-4 mb-6 text-sm">
         <span className="text-muted">
           Total:{" "}
-          <span className="font-medium text-charcoal">{bookings.length}</span>
+          <span className="font-medium text-charcoal">{sourceBookings.length}</span>
         </span>
         <span className="text-muted">
           Attended:{" "}
           <span className="font-medium text-charcoal">
-            {bookings.filter((b) => b.status === "attended").length}
+            {sourceBookings.filter((b) => b.status === "attended").length}
           </span>
         </span>
         <span className="text-muted">
           Cancelled:{" "}
           <span className="font-medium text-charcoal">
-            {bookings.filter((b) => b.status === "cancelled").length}
+            {sourceBookings.filter((b) => b.status === "cancelled").length}
           </span>
         </span>
       </div>
@@ -94,9 +101,11 @@ export default function BookingHistoryPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-divider/60 bg-cream/40">
-                <th className="text-left px-5 py-3 font-medium text-muted text-xs uppercase tracking-wider">
-                  Student
-                </th>
+                {isAdmin && (
+                  <th className="text-left px-5 py-3 font-medium text-muted text-xs uppercase tracking-wider">
+                    Student
+                  </th>
+                )}
                 <th className="text-left px-5 py-3 font-medium text-muted text-xs uppercase tracking-wider">
                   Class
                 </th>
@@ -120,11 +129,13 @@ export default function BookingHistoryPage() {
                   key={b.id}
                   className="hover:bg-cream/30 transition-colors"
                 >
-                  <td className="px-5 py-3">
-                    <span className="font-medium text-charcoal">
-                      {b.student?.name ?? "—"}
-                    </span>
-                  </td>
+                  {isAdmin && (
+                    <td className="px-5 py-3">
+                      <span className="font-medium text-charcoal">
+                        {b.student?.name ?? "—"}
+                      </span>
+                    </td>
+                  )}
                   <td className="px-5 py-3 text-charcoal">
                     {b.ct?.name ?? "—"}
                   </td>
