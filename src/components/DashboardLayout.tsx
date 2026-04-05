@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutGrid, BookOpen, Users, Calendar, FileText, Menu } from "lucide-react";
+import { LayoutGrid, BookOpen, Users, Calendar, FileText, Menu, LogOut } from "lucide-react";
 import { getUser, logout } from "../auth";
 
 const adminNav = [
@@ -20,6 +20,8 @@ export default function DashboardLayout() {
   const user = getUser()!;
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   const navItems = user.role === "admin" ? adminNav : studentNav;
 
@@ -27,6 +29,18 @@ export default function DashboardLayout() {
     logout();
     navigate("/");
   }
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    }
+    if (userMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [userMenuOpen]);
 
   return (
     <div className="min-h-dvh bg-cream">
@@ -77,24 +91,6 @@ export default function DashboardLayout() {
           ))}
         </nav>
 
-        {/* User info at bottom */}
-        <div className="border-t border-divider px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-warm-brown text-cream flex items-center justify-center text-sm font-semibold shrink-0">
-              {user.name.charAt(0)}
-            </div>
-            <div className="min-w-0">
-              <p className="text-sm font-medium text-charcoal truncate">{user.name}</p>
-              <p className="text-xs text-muted capitalize">{user.role}</p>
-            </div>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="mt-3 w-full text-left text-sm font-medium text-muted hover:text-charcoal transition-colors duration-200"
-          >
-            Sign Out
-          </button>
-        </div>
       </aside>
 
       {/* Main content area */}
@@ -113,15 +109,32 @@ export default function DashboardLayout() {
 
             <div className="lg:hidden" />
 
-            {/* Right side — user info (desktop) */}
-            <div className="ml-auto flex items-center gap-4">
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-medium text-charcoal">{user.name}</p>
-                <p className="text-xs text-muted capitalize">{user.role}</p>
-              </div>
-              <div className="w-9 h-9 rounded-full bg-warm-brown text-cream flex items-center justify-center text-sm font-semibold">
-                {user.name.charAt(0)}
-              </div>
+            {/* Right side — user menu */}
+            <div className="ml-auto relative" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen((v) => !v)}
+                className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mr-2 hover:bg-cream/60 transition-colors duration-200"
+              >
+                <div className="text-right hidden sm:block">
+                  <p className="text-sm font-medium text-charcoal">{user.name}</p>
+                  <p className="text-xs text-muted capitalize">{user.role}</p>
+                </div>
+                <div className="w-9 h-9 rounded-full bg-warm-brown text-cream flex items-center justify-center text-sm font-semibold">
+                  {user.name.charAt(0)}
+                </div>
+              </button>
+
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-divider shadow-lg py-1 z-50">
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm font-medium text-muted hover:text-charcoal hover:bg-cream/50 transition-colors duration-200"
+                  >
+                    <LogOut size={16} strokeWidth={1.5} />
+                    Sign Out
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </header>
