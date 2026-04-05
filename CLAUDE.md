@@ -31,6 +31,10 @@ Custom theme defined in `src/index.css` via Tailwind `@theme`:
 - Fonts: Cormorant Garamond (serif/headings), DM Sans (sans/body) — loaded from Google Fonts in `index.html`
 - Grain texture overlay, scroll-triggered reveal animations (fadeUp, scaleIn, stagger)
 
+### Dashboard Layout
+
+`src/components/DashboardLayout.tsx` provides the shared layout for both `/manage` (admin) and `/dashboard` (student) routes. The `<main>` element has `max-w-7xl mx-auto` to center content on wide screens. Individual page components should **not** add their own `max-w` wrappers — the layout handles it. Follow this same pattern when adding new pages under either route.
+
 ### Key Component
 
 `src/components/Reveal.tsx` — Intersection Observer wrapper providing scroll-triggered animations. Supports fade-up, scale-in, and staggered children modes.

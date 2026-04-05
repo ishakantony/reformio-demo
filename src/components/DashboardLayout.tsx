@@ -127,7 +127,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Page content */}
-        <main className="px-6 py-8 lg:px-10">
+        <main className="px-6 py-8 lg:px-10 max-w-7xl mx-auto">
           <Outlet />
         </main>
       </div>

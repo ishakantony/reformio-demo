@@ -39,7 +39,7 @@ export default function BookingHistoryPage() {
   );
 
   return (
-    <div className="max-w-6xl">
+    <>
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-medium text-charcoal mb-1">
           Bookings
@@ -151,6 +151,6 @@ export default function BookingHistoryPage() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

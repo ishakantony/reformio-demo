@@ -16,7 +16,7 @@ export default function OverviewPage() {
   const todayClasses = getClassesForDate(getTodayDate());
 
   return (
-    <div className="max-w-6xl">
+    <>
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-medium text-charcoal mb-1">
           Overview
@@ -174,7 +174,7 @@ export default function OverviewPage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
