@@ -28,6 +28,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button, a, select, [role="button"] {
+  cursor: pointer;
+}
+
 /* Scroll-triggered reveal animations */
 @keyframes fadeUp {
   from {
