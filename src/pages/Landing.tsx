@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, Users, Flame, CalendarCheck, Smartphone, Bell, Check } from "lucide-react";
 import { Reveal } from "../components/Reveal";
-import { isAuthenticated } from "../auth";
+import { getUser } from "../auth";
 
 /* ------------------------------------------------------------------ */
 /*  Sections                                                           */
 /* ------------------------------------------------------------------ */
 
 function Navbar() {
-  const authed = isAuthenticated();
+  const user = getUser();
+  const authed = !!user;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/80 backdrop-blur-lg border-b border-divider/50">
@@ -24,7 +25,7 @@ function Navbar() {
         <div className="flex items-center gap-4">
           {authed ? (
             <Link
-              to="/manage/dashboard"
+              to={user?.role === "admin" ? "/manage/dashboard" : "/dashboard"}
               className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-charcoal shadow-sm hover:bg-rose-dark hover:shadow-md transition-all duration-300"
             >
               Dashboard

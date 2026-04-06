@@ -11,6 +11,7 @@ import StudentListPage from "./pages/dashboard/StudentListPage";
 import SchedulePage from "./pages/dashboard/SchedulePage";
 import BookingHistoryPage from "./pages/dashboard/BookingHistoryPage";
 import StudentClassesPage from "./pages/dashboard/StudentClassesPage";
+import AccountPage from "./pages/dashboard/AccountPage";
 
 function GuestOnly({ children }: { children: React.ReactNode }) {
   if (isAuthenticated()) {
@@ -89,6 +90,16 @@ export default function App() {
           <Route path="students" element={<AdminOnly><StudentListPage /></AdminOnly>} />
           <Route path="schedule" element={<AdminOnly><SchedulePage /></AdminOnly>} />
           <Route path="bookings" element={<BookingHistoryPage />} />
+        </Route>
+        <Route
+          path="/account"
+          element={
+            <RequireAuth>
+              <DashboardLayout />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<AccountPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

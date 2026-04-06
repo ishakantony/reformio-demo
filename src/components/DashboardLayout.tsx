@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutGrid, BookOpen, Users, Calendar, FileText, Menu, LogOut } from "lucide-react";
+import { LayoutGrid, BookOpen, Users, Calendar, FileText, Menu, LogOut, UserCog } from "lucide-react";
 import { getUser, logout } from "../auth";
 
 const adminNav = [
@@ -127,6 +127,14 @@ export default function DashboardLayout() {
 
               {userMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-divider shadow-lg py-1 z-50">
+                  <Link
+                    to="/account"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm font-medium text-muted hover:text-charcoal hover:bg-cream/50 transition-colors duration-200"
+                  >
+                    <UserCog size={16} strokeWidth={1.5} />
+                    Account
+                  </Link>
                   <button
                     onClick={handleLogout}
                     className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm font-medium text-muted hover:text-charcoal hover:bg-cream/50 transition-colors duration-200"
