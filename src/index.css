@@ -99,9 +99,16 @@ button, a, select, [role="button"] {
   background-size: 128px 128px;
 }
 
-/* Override react-day-picker selected day font size */
-.rdp-selected {
-  font-size: inherit !important;
+/* Calendar: range endpoint & middle styling */
+.rdp-range_start .rdp-day_button,
+.rdp-range_end .rdp-day_button {
+  @apply bg-warm-brown text-cream rounded-lg;
+}
+.rdp-range_middle .rdp-day_button {
+  @apply rounded-none text-charcoal;
+}
+.rdp-range_start.rdp-range_end {
+  background: transparent;
 }
 
 /* Custom selection color */

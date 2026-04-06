@@ -1,8 +1,7 @@
 import { useState, useMemo } from "react";
 import { Clock, User, Timer, Dumbbell, Flame, Tag } from "lucide-react";
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import type { DateRange } from "react-day-picker";
-import "react-day-picker/style.css";
+import { Calendar } from "../../components/Calendar";
 import {
   getAllClasses,
   getClassTypeById,
@@ -79,8 +78,6 @@ export default function StudentClassesPage() {
     });
   }
 
-  const defaultClassNames = getDefaultClassNames();
-
   return (
     <>
       <div className="mb-8">
@@ -101,34 +98,10 @@ export default function StudentClassesPage() {
               <h3 className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
                 Date Range
               </h3>
-              <DayPicker
+              <Calendar
                 mode="range"
                 selected={dateRange}
                 onSelect={setDateRange}
-                style={
-                  {
-                    "--rdp-accent-color": "#8B6F4E",
-                    "--rdp-accent-background-color": "rgba(139,111,78,0.1)",
-                    "--rdp-range_start-date-background-color": "#8B6F4E",
-                    "--rdp-range_end-date-background-color": "#8B6F4E",
-                    "--rdp-range_start-color": "#FAF7F2",
-                    "--rdp-range_end-color": "#FAF7F2",
-                    "--rdp-range_middle-background-color": "rgba(139,111,78,0.1)",
-                    "--rdp-range_middle-color": "#1A1A1A",
-                    "--rdp-today-color": "#8B6F4E",
-                    "--rdp-selected-border": "2px solid transparent",
-                    "--rdp-day_button-border": "2px solid transparent",
-                    "--rdp-day-height": "32px",
-                    "--rdp-day-width": "32px",
-                    "--rdp-day_button-height": "30px",
-                    "--rdp-day_button-width": "30px",
-                    "--rdp-day_button-border-radius": "8px",
-                    fontSize: "13px",
-                  } as React.CSSProperties
-                }
-                classNames={{
-                  chevron: `${defaultClassNames.chevron} fill-warm-brown`,
-                }}
               />
             </div>
 
