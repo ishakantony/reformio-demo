@@ -99,6 +99,11 @@ button, a, select, [role="button"] {
   background-size: 128px 128px;
 }
 
+/* Override react-day-picker selected day font size */
+.rdp-selected {
+  font-size: inherit !important;
+}
+
 /* Custom selection color */
 ::selection {
   background-color: #D4A59A;

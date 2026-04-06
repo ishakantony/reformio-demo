@@ -21,6 +21,7 @@ export interface ScheduledClass {
   date: string;
   startTime: string;
   enrolledCount: number;
+  tags?: string[];
 }
 
 export interface Student {
@@ -90,32 +91,32 @@ const week = getCurrentWeekDates();
 
 export const scheduledClasses: ScheduledClass[] = [
   // Monday
-  { id: "sc-1", classTypeId: "ct-1", trainerId: "t-1", date: week[0], startTime: "09:00", enrolledCount: 5 },
-  { id: "sc-2", classTypeId: "ct-2", trainerId: "t-2", date: week[0], startTime: "11:30", enrolledCount: 6 },
-  { id: "sc-3", classTypeId: "ct-1", trainerId: "t-1", date: week[0], startTime: "17:00", enrolledCount: 7 },
+  { id: "sc-1", classTypeId: "ct-1", trainerId: "t-1", date: week[0], startTime: "09:00", enrolledCount: 5, tags: ["All Levels", "Strength"] },
+  { id: "sc-2", classTypeId: "ct-2", trainerId: "t-2", date: week[0], startTime: "11:30", enrolledCount: 6, tags: ["Intermediate", "Core"] },
+  { id: "sc-3", classTypeId: "ct-1", trainerId: "t-1", date: week[0], startTime: "17:00", enrolledCount: 7, tags: ["Glute Focus", "Intermediate"] },
   // Tuesday
-  { id: "sc-4", classTypeId: "ct-2", trainerId: "t-3", date: week[1], startTime: "08:00", enrolledCount: 8 },
-  { id: "sc-5", classTypeId: "ct-1", trainerId: "t-1", date: week[1], startTime: "10:00", enrolledCount: 3 },
-  { id: "sc-6", classTypeId: "ct-2", trainerId: "t-2", date: week[1], startTime: "18:00", enrolledCount: 10 },
+  { id: "sc-4", classTypeId: "ct-2", trainerId: "t-3", date: week[1], startTime: "08:00", enrolledCount: 8, tags: ["Beginner", "First Timer"] },
+  { id: "sc-5", classTypeId: "ct-1", trainerId: "t-1", date: week[1], startTime: "10:00", enrolledCount: 3, tags: ["All Levels", "Flexibility"] },
+  { id: "sc-6", classTypeId: "ct-2", trainerId: "t-2", date: week[1], startTime: "18:00", enrolledCount: 10, tags: ["Advanced", "Endurance"] },
   // Wednesday
-  { id: "sc-7", classTypeId: "ct-1", trainerId: "t-3", date: week[2], startTime: "09:00", enrolledCount: 6 },
-  { id: "sc-8", classTypeId: "ct-2", trainerId: "t-2", date: week[2], startTime: "12:00", enrolledCount: 9 },
-  { id: "sc-9", classTypeId: "ct-1", trainerId: "t-1", date: week[2], startTime: "16:00", enrolledCount: 4 },
+  { id: "sc-7", classTypeId: "ct-1", trainerId: "t-3", date: week[2], startTime: "09:00", enrolledCount: 6, tags: ["Intermediate", "Core"] },
+  { id: "sc-8", classTypeId: "ct-2", trainerId: "t-2", date: week[2], startTime: "12:00", enrolledCount: 9, tags: ["All Levels", "Flexibility"] },
+  { id: "sc-9", classTypeId: "ct-1", trainerId: "t-1", date: week[2], startTime: "16:00", enrolledCount: 4, tags: ["Beginner", "First Timer"] },
   // Thursday
-  { id: "sc-10", classTypeId: "ct-2", trainerId: "t-3", date: week[3], startTime: "08:00", enrolledCount: 11 },
-  { id: "sc-11", classTypeId: "ct-1", trainerId: "t-1", date: week[3], startTime: "10:30", enrolledCount: 8 },
-  { id: "sc-12", classTypeId: "ct-1", trainerId: "t-3", date: week[3], startTime: "17:30", enrolledCount: 2 },
+  { id: "sc-10", classTypeId: "ct-2", trainerId: "t-3", date: week[3], startTime: "08:00", enrolledCount: 11, tags: ["Advanced", "Endurance"] },
+  { id: "sc-11", classTypeId: "ct-1", trainerId: "t-1", date: week[3], startTime: "10:30", enrolledCount: 8, tags: ["Glute Focus", "Strength"] },
+  { id: "sc-12", classTypeId: "ct-1", trainerId: "t-3", date: week[3], startTime: "17:30", enrolledCount: 2, tags: ["Beginner", "All Levels"] },
   // Friday
-  { id: "sc-13", classTypeId: "ct-2", trainerId: "t-2", date: week[4], startTime: "09:00", enrolledCount: 7 },
-  { id: "sc-14", classTypeId: "ct-1", trainerId: "t-1", date: week[4], startTime: "11:00", enrolledCount: 5 },
-  { id: "sc-15", classTypeId: "ct-2", trainerId: "t-3", date: week[4], startTime: "16:30", enrolledCount: 4 },
+  { id: "sc-13", classTypeId: "ct-2", trainerId: "t-2", date: week[4], startTime: "09:00", enrolledCount: 7, tags: ["Intermediate", "Core"] },
+  { id: "sc-14", classTypeId: "ct-1", trainerId: "t-1", date: week[4], startTime: "11:00", enrolledCount: 5, tags: ["All Levels", "Strength"] },
+  { id: "sc-15", classTypeId: "ct-2", trainerId: "t-3", date: week[4], startTime: "16:30", enrolledCount: 4, tags: ["Beginner", "Flexibility"] },
   // Saturday
-  { id: "sc-16", classTypeId: "ct-1", trainerId: "t-1", date: week[5], startTime: "08:00", enrolledCount: 8 },
-  { id: "sc-17", classTypeId: "ct-2", trainerId: "t-2", date: week[5], startTime: "10:00", enrolledCount: 12 },
-  { id: "sc-18", classTypeId: "ct-1", trainerId: "t-3", date: week[5], startTime: "12:00", enrolledCount: 6 },
+  { id: "sc-16", classTypeId: "ct-1", trainerId: "t-1", date: week[5], startTime: "08:00", enrolledCount: 8, tags: ["Advanced", "Glute Focus"] },
+  { id: "sc-17", classTypeId: "ct-2", trainerId: "t-2", date: week[5], startTime: "10:00", enrolledCount: 12, tags: ["All Levels", "Endurance"] },
+  { id: "sc-18", classTypeId: "ct-1", trainerId: "t-3", date: week[5], startTime: "12:00", enrolledCount: 6, tags: ["Intermediate", "Strength"] },
   // Sunday
-  { id: "sc-19", classTypeId: "ct-2", trainerId: "t-2", date: week[6], startTime: "09:00", enrolledCount: 5 },
-  { id: "sc-20", classTypeId: "ct-1", trainerId: "t-1", date: week[6], startTime: "11:00", enrolledCount: 3 },
+  { id: "sc-19", classTypeId: "ct-2", trainerId: "t-2", date: week[6], startTime: "09:00", enrolledCount: 5, tags: ["Beginner", "First Timer"] },
+  { id: "sc-20", classTypeId: "ct-1", trainerId: "t-1", date: week[6], startTime: "11:00", enrolledCount: 3, tags: ["All Levels", "Flexibility"] },
 ];
 
 export const students: Student[] = [
@@ -203,6 +204,14 @@ export function getClassTypeById(id: string): ClassType | undefined {
 
 export function getStudentById(id: string): Student | undefined {
   return students.find((s) => s.id === id);
+}
+
+export function getAllClasses(): ScheduledClass[] {
+  return [...scheduledClasses].sort((a, b) =>
+    a.date === b.date
+      ? a.startTime.localeCompare(b.startTime)
+      : a.date.localeCompare(b.date),
+  );
 }
 
 export function getClassesForDate(date: string): ScheduledClass[] {
